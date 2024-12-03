@@ -2,33 +2,28 @@
 # https://adventofcode.com/2024/day/2
 
 def part1solution():
-    data = {}
+    safe = 0
 
     # Parse data from file
     with open("day2input.txt", "r") as file:
-        for index, line in enumerate(file):
-            data[index] = line.split()
-    
+        for line in file:
+            report = [int(num) for num in line.split()]
 
-    # Check the step rule, the difference between consecutive number must be between 1 and 3 (inclusive)
-    # Check the consistency rule, all numbers either increase or decrease
-    # ^ If both are true, the report is safe.
-
-    safe = 0
-
-    for reportLine in data.values():
-        differences = []
-        for i in range(len(reportLine) - 1):
-            # convert the numbers into a differences array
-            differences.append(int(reportLine[i]) - int(reportLine[i + 1]))
+            # Calculate the difference between consecutive
+            differences = []
+            for i in range(len(report) - 1):
+                differences.append(int(report[i]) - int(report[i + 1]))
         
-        # (Consistency): all positive or all negative
-        if all(d >= 0 for d in differences) or all(d < 0 for d in differences):
-            
-            # (Step rule): all differences is < 1 or > 3, break
-            if all(1 <= abs(d) <= 3 for d in differences):
+            # Check if all differences are consistently positive or negative
+            is_consistent = all(d >= 0 for d in differences) or all(d < 0 for d in differences)
+
+            # Check if all differences between are between 1 and 3 (inclusive)
+            is_step_valid = all(1 <= abs(d) <= 3 for d in differences)
+
+            # ^ If both are true, the report is safe.
+            if is_consistent and is_step_valid:
                 safe += 1
-                
+
     return safe
 
 print('Part 1 solution:', part1solution())
