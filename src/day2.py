@@ -10,9 +10,7 @@ def part1solution():
             report = [int(num) for num in line.split()]
 
             # Calculate the difference between consecutive
-            differences = []
-            for i in range(len(report) - 1):
-                differences.append(int(report[i]) - int(report[i + 1]))
+            differences = [report[i] - report[i + 1] for i in range(len(report) - 1)]
         
             # Check if all differences are consistently positive or negative
             is_consistent = all(d >= 0 for d in differences) or all(d < 0 for d in differences)
