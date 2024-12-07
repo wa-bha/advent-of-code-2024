@@ -35,12 +35,14 @@ def part2():
             
             else:
                 if (is_next_instruction_valid == True):
-                    # extract tuple from mul(x,y)
-                    tuple = re.findall(r'mul\((\d{1,3}),(\d{1,3})\)', match)
-                    total += int(tuple[0][0]) * int(tuple[0][1])
+                    # put both decimal sequences into a list
+                    decimals = re.findall(r'\d+', match)
+
+                    # parse as int variables, then append to total
+                    x, y = map(int, decimals)
+                    total += x * y
 
         return total
 
 print('Part 1:', part1())
 print('Part 2:', part2())
-
