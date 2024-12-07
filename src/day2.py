@@ -1,7 +1,7 @@
 # Day 2: Red-Nosed Reports
 # https://adventofcode.com/2024/day/2
 
-def part1solution():
+def part1():
     safe = 0
 
     # Parse data from file
@@ -24,4 +24,4 @@ def part1solution():
 
     return safe
 
-print('Part 1 solution:', part1solution())
+print('Part 1:', part1())

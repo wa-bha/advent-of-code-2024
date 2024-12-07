@@ -1,7 +1,7 @@
 # Day 1: Historian Hysteria
 # https://adventofcode.com/2024/day/1
 
-def part1solution():
+def part1():
     left = []
     right = []
 
@@ -28,7 +28,7 @@ def part1solution():
     return current_sum
 
 
-def part2solution():
+def part2():
     left = []
     right = []
 
@@ -57,5 +57,5 @@ def part2solution():
     return current_contribution
 
 
-print('Part 1 solution:', part1solution())
-print('Part 2 solution:', part2solution())
+print('Part 1:', part1())
+print('Part 2:', part2())

@@ -3,7 +3,7 @@
 
 import re
 
-def part1solution():
+def part1():
     # Parse data from file
     with open("day3input.txt", "r") as file:
         content = file.read()
@@ -14,12 +14,12 @@ def part1solution():
         # Get the product of each extracted tuple "instruction"
         return sum(int(x) * int(y) for x, y in matches)
     
-def part2solution():
+def part2():
     # Parse data from file
     with open("day3input.txt", "r") as file:
         content = file.read()
 
-        # find all do/don't and valid mul(x,y) matches
+        # extract all "do()", "don't" and "valid mul(x,y)" matches
         matches = re.findall(r'mul\(\d{1,3},\d{1,3}\)|do\(\)|don\'t\(\)', content)
 
         # starts as enabled
@@ -35,11 +35,12 @@ def part2solution():
             
             else:
                 if (is_next_instruction_valid == True):
+                    # extract tuple from mul(x,y)
                     tuple = re.findall(r'mul\((\d{1,3}),(\d{1,3})\)', match)
                     total += int(tuple[0][0]) * int(tuple[0][1])
 
         return total
 
-print('Part 1 solution:', part1solution())
-print('Part 2 solution:', part2solution())
+print('Part 1:', part1())
+print('Part 2:', part2())
 
