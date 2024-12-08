@@ -55,7 +55,6 @@ def part1():
 def is_valid_crossed_MAS(row, col, grid, max_rows, max_cols):
     word = "MAS"
     reversed_word = word[::-1]
-
     diagonal_1 = [(-1, -1), (1, 1)]  # up-left to down-right
     diagonal_2 = [(-1, 1), (1, -1)]  # up-right to down-left
 
@@ -68,17 +67,13 @@ def is_valid_crossed_MAS(row, col, grid, max_rows, max_cols):
 
         # check each position on the diagonal
         for i, (new_row, new_col) in enumerate(positions):
-
-            # Check the bounds
-            if (new_row < 0 or new_row >= max_rows or new_col < 0 or new_col >= max_cols):
+            if not (0 <= new_row < max_rows and 0 <= new_col < max_cols): # Check the bounds
                 return False
             
-            # Check the character match
-            if (grid[new_row][new_col] != word_to_check[i]):
+            if (grid[new_row][new_col] != word_to_check[i]): # Check the character match
                 return False
             
-        # Found a matched sequence, return true
-        return True
+        return True # Found a matched sequence, return true
         
     first_diagonal_valid = check_diagonal(*diagonal_1, word) or check_diagonal(*diagonal_1, reversed_word)
     second_diagonal_valid = check_diagonal(*diagonal_2, word) or check_diagonal(*diagonal_2, reversed_word)
@@ -100,7 +95,7 @@ def part2():
     for row in range(max_rows):
         for col in range(max_cols):
             if grid[row][col] == 'A':
-                
+
                 # Check if it builds a valid "MAS" in an X pattern
                 if is_valid_crossed_MAS(row, col, grid, max_rows, max_cols):
                     count += 1
